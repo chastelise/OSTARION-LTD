@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import { Star, Target, Heart, Lightbulb, Users, Globe } from 'lucide-react';
 import SectionTitle from '../components/SectionTitle';
 import Card from '../components/Card';
+import ceoPhoto from '../images/founder & ceo.png';
+import cooPhoto from '../images/founder-coo.jpeg';
 
 const AboutPage = () => {
   const values = [
@@ -45,8 +47,23 @@ const AboutPage = () => {
     },
   ];
 
+  const founders = [
+    {
+      name: 'Twese Hozana Chaste',
+      photo: ceoPhoto,
+      imagePosition: 'center 8%',
+      bio: 'Medical doctor and Mandela Washington Fellowship fellow, with specialized training in AI in health and education.',
+    },
+    {
+      name: 'Berwa Derrick',
+      photo: cooPhoto,
+      imagePosition: 'center 8%',
+      bio: 'Medical doctor and entrepreneur, trained at the Dunin-Deshpande Queen\'s Innovation Centre (DDQIC) at Queen\'s University.',
+    },
+  ];
+
   return (
-    <div className="pt-20 bg-white dark:bg-gray-900">
+    <div className="pt-28 bg-white dark:bg-gray-900">
       <section className="py-24 bg-gradient-to-br from-orange-50 via-white to-orange-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -70,6 +87,45 @@ const AboutPage = () => {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">{value.title}</h3>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{value.description}</p>
               </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-white dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-sm tracking-[0.2em] uppercase text-primary-600 mb-12 text-center">
+            Founders
+          </p>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            {founders.map((person, index) => (
+              <motion.article
+                key={person.name}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                className="flex items-center gap-5 sm:gap-6 rounded-3xl bg-gray-50 dark:bg-gray-800 p-6 sm:p-7"
+              >
+                <div className="min-w-0 flex-1">
+                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary-600">
+                    Founder
+                  </p>
+                  <h3 className="mt-2 text-xl sm:text-2xl font-semibold tracking-tight whitespace-nowrap text-gray-900 dark:text-white">
+                    {person.name}
+                  </h3>
+                  <p className="mt-4 text-sm sm:text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                    {person.bio}
+                  </p>
+                </div>
+                <img
+                  src={person.photo}
+                  alt={person.name}
+                  className="h-28 w-28 sm:h-36 sm:w-36 lg:h-44 lg:w-44 shrink-0 rounded-2xl object-cover"
+                  style={{ objectPosition: person.imagePosition }}
+                />
+              </motion.article>
             ))}
           </div>
         </div>
@@ -128,7 +184,7 @@ const AboutPage = () => {
             <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
               To become the leading technology company in Africa that empowers Africans and contributes to the world through transformative technology.
             </p>
-            
+
             <div className="inline-block bg-gradient-to-r from-primary-500 to-orange-500 rounded-2xl p-12 md:p-16">
               <h3 className="text-3xl md:text-4xl font-bold mb-6">We Believe Africa Must Shine Again</h3>
               <p className="text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto">

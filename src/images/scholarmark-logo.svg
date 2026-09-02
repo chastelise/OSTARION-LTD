@@ -1,0 +1,13 @@
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="300" fill="#FFFFFF"/>
+
+  <polygon points="150,58 250,108 150,158 50,108" fill="#2563EB"/>
+  <polygon points="150,70 228,108 150,146 72,108" fill="#3B82F6"/>
+  <rect x="144" y="108" width="12" height="52" rx="2" fill="#1D4ED8"/>
+  <circle cx="150" cy="164" r="7" fill="#2563EB"/>
+  <path d="M156 108 C 190 108, 198 132, 198 148" stroke="#F97316" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <circle cx="198" cy="152" r="5" fill="#F97316"/>
+
+  <text x="150" y="230" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#2563EB" text-anchor="middle">ScholarMark</text>
+  <line x1="88" y1="246" x2="212" y2="246" stroke="#2563EB" stroke-width="3" stroke-linecap="round"/>
+</svg>

@@ -1,9 +1,10 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ExternalLink, CheckCircle2 } from 'lucide-react';
-import scholarmarkLogo from '../images/scholarmark-logo.png';
+import scholarmarkLogo from '../images/scholarmark-logo.svg';
 import orderlyLogo from '../images/orderly-logo.png';
 import hmsLogo from '../images/hms-logo.svg';
+import hartonEpsLogo from '../images/harton-eps.svg';
 
 const ProductDetail = () => {
   const { productId } = useParams();
@@ -77,7 +78,7 @@ const ProductDetail = () => {
       description: 'A highly sophisticated technology system that simulates clinical patient treatment in a virtual environment where errors do not cost lives.',
       longDescription: 'HMS transforms medical education by providing a safe, realistic environment for healthcare professionals to practice and perfect their skills. Our advanced simulation technology bridges the gap between theory and practice.',
       logo: hmsLogo,
-      website: '#',
+      website: 'https://www.hartonmed.org',
       gradient: 'from-green-500 to-emerald-500',
       features: [
         'Realistic clinical patient treatment simulations',
@@ -106,13 +107,36 @@ const ProductDetail = () => {
         'Track and measure staff competency development',
       ],
     },
+    'harton-eps': {
+      name: 'Harton EPS',
+      tagline: 'Harton Examination Platform',
+      description: 'A secure digital examination system that enables institutions to conduct examinations on desktop, web, and mobile, with online and offline support.',
+      longDescription: 'Harton EPS gives institutions a single place to run examinations — on campus machines, in the browser, or on a phone — whether the network holds or not. Each student receives a unique, randomized paper, with AI proctoring and analysis for remote and in-person sittings.',
+      logo: hartonEpsLogo,
+      website: '#',
+      gradient: 'from-teal-500 to-cyan-500',
+      features: [
+        'Online and offline examinations',
+        'Unique, randomized exam for each student',
+        'AI proctoring and examination analysis',
+        'Remote proctored examinations',
+        'Support for multiple examination and question formats',
+      ],
+      benefits: [
+        'Reduces printing and examination costs',
+        'Eliminates unnecessary paperwork',
+        'Reduces administrative workload and manual processes',
+        'Speeds up marking and results processing',
+        'Improves examination efficiency and scalability',
+      ],
+    },
   };
 
   const product = products[productId];
 
   if (!product) {
     return (
-      <div className="pt-20 min-h-screen flex items-center justify-center bg-white dark:bg-gray-900">
+      <div className="pt-28 min-h-screen flex items-center justify-center bg-white dark:bg-gray-900">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Product Not Found</h1>
           <Link to="/" className="text-primary-600 hover:text-primary-700">
@@ -124,7 +148,7 @@ const ProductDetail = () => {
   }
 
   return (
-    <div className="pt-20 bg-white dark:bg-gray-900">
+    <div className="pt-28 bg-white dark:bg-gray-900">
       <section className="py-16 bg-gradient-to-br from-orange-50 dark:from-gray-800 via-white dark:via-gray-900 to-orange-50 dark:to-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link to="/" className="inline-flex items-center text-gray-600 dark:text-gray-400 hover:text-primary-600 mb-8">
@@ -138,11 +162,11 @@ const ProductDetail = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className={`bg-gradient-to-br ${product.gradient} rounded-3xl p-12 flex items-center justify-center shadow-2xl`}>
+              <div className="w-full aspect-square max-w-md mx-auto bg-white rounded-3xl shadow-xl flex items-center justify-center p-10">
                 <img 
                   src={product.logo} 
                   alt={`${product.name} logo`}
-                  className="max-h-64 max-w-full object-contain"
+                  className="w-full h-full max-h-56 object-contain"
                 />
               </div>
             </motion.div>
@@ -193,7 +217,9 @@ const ProductDetail = () => {
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
                 Key Benefits
               </h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className={`grid md:grid-cols-2 gap-6 ${
+                product.benefits.length > 4 ? 'lg:grid-cols-3 xl:grid-cols-5' : 'lg:grid-cols-4'
+              }`}>
                 {product.benefits.map((benefit, idx) => (
                   <div key={idx} className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 text-center">
                     <CheckCircle2 className="w-12 h-12 text-primary-600 mx-auto mb-4" />

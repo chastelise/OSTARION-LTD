@@ -1,7 +1,13 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Mail, Phone, Send, Linkedin, Twitter, Github } from 'lucide-react';
+import { Mail, Phone, Send, Linkedin, Instagram } from 'lucide-react';
 import SectionTitle from '../components/SectionTitle';
+
+const XIcon = ({ className }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.995-9.232L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
+  </svg>
+);
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -43,7 +49,7 @@ const Contact = () => {
       } else {
         setSubmitStatus('error');
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -77,8 +83,8 @@ const Contact = () => {
 
   const socialLinks = [
     { icon: Linkedin, link: '#', name: 'LinkedIn' },
-    { icon: Twitter, link: '#', name: 'Twitter' },
-    { icon: Github, link: '#', name: 'GitHub' },
+    { icon: XIcon, link: '#', name: 'X' },
+    { icon: Instagram, link: '#', name: 'Instagram' },
   ];
 
   return (

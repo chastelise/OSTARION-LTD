@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import chasteLogo from '../images/chaste logo.png';
 
 const Footer = () => {

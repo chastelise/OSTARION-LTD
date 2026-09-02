@@ -16,8 +16,6 @@ export const ThemeProvider = ({ children }) => {
     return saved || 'system';
   });
 
-  const [isDark, setIsDark] = useState(false);
-
   useEffect(() => {
     const applyTheme = () => {
       let shouldBeDark = false;
@@ -30,8 +28,6 @@ export const ThemeProvider = ({ children }) => {
         shouldBeDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       }
 
-      setIsDark(shouldBeDark);
-      
       if (shouldBeDark) {
         document.documentElement.classList.add('dark');
       } else {
@@ -53,10 +49,6 @@ export const ThemeProvider = ({ children }) => {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  const setThemeMode = (newTheme) => {
-    setTheme(newTheme);
-  };
-
   const cycleTheme = () => {
     setTheme((current) => {
       if (current === 'light') return 'dark';
@@ -66,7 +58,7 @@ export const ThemeProvider = ({ children }) => {
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, isDark, setThemeMode, cycleTheme }}>
+    <ThemeContext.Provider value={{ theme, cycleTheme }}>
       {children}
     </ThemeContext.Provider>
   );

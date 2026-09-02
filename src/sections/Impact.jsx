@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Rocket, Users, Shield, Sparkles } from 'lucide-react';
+import { Rocket, Users, Shield } from 'lucide-react';
 import Card from '../components/Card';
-import SectionTitle from '../components/SectionTitle';
 
 const Impact = () => {
   const navigate = useNavigate();
@@ -22,11 +21,6 @@ const Impact = () => {
       icon: Shield,
       title: 'Accessible Technology',
       description: 'Making advanced technology simple, affordable, and accessible to everyone, everywhere.',
-    },
-    {
-      icon: Sparkles,
-      title: 'Youth Development',
-      description: 'Investing in the next generation of innovators, creators, and leaders who will shape the future.',
     },
   ];
 
@@ -48,7 +42,7 @@ const Impact = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           {impacts.map((impact, index) => (
             <Card key={index} delay={index * 0.1} className="p-8 text-center group bg-white dark:bg-gray-800 border border-transparent dark:border-gray-700">
               <motion.div
@@ -89,7 +83,7 @@ const Impact = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => navigate('/products')}
+              onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
               className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg font-bold text-lg hover:bg-white/10 transition-colors"
             >
               Explore Products

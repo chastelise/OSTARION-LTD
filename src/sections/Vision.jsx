@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Globe, Zap, Users, TrendingUp } from 'lucide-react';
-import SectionTitle from '../components/SectionTitle';
+import DotsLinesBackground from '../components/DotsLinesBackground';
 
 const Vision = () => {
   const visionPoints = [
@@ -27,11 +27,8 @@ const Vision = () => {
   ];
 
   return (
-    <section id="vision" className="py-24 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-500 rounded-full filter blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-500 rounded-full filter blur-3xl"></div>
-      </div>
+    <section id="vision" className="py-24 bg-gray-900 text-white relative overflow-hidden">
+      <DotsLinesBackground />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -77,7 +74,7 @@ const Vision = () => {
               <motion.div
                 whileHover={{ scale: 1.1, rotate: 360 }}
                 transition={{ duration: 0.6 }}
-                className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-primary-500 to-orange-500 rounded-2xl flex items-center justify-center"
+                className="liquid-glass w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center"
               >
                 <point.icon className="w-10 h-10 text-white" />
               </motion.div>
@@ -94,7 +91,7 @@ const Vision = () => {
           transition={{ duration: 0.8 }}
           className="mt-20 text-center"
         >
-          <div className="inline-block border-2 border-primary-500 rounded-2xl p-8 md:p-12 backdrop-blur-sm bg-white/5">
+          <div className="inline-block rounded-2xl p-8 md:p-12 backdrop-blur-sm bg-white/5 border-2 border-transparent">
             <p className="text-2xl md:text-3xl font-medium mb-4">
               Join us in building the future of Africa
             </p>
