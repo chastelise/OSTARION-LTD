@@ -2,17 +2,46 @@ import { motion } from 'framer-motion';
 import urLogo from '../images/ur-logo.png';
 import unipodLogo from '../images/unipod-logo.svg';
 
+const UR_BLUE = '#006699';
+
 const partners = [
   {
     name: 'University of Rwanda',
-    logo: urLogo,
     href: 'https://ur.ac.rw',
-    invert: true,
+    render: () => (
+      <span className="flex items-center gap-2">
+        <img
+          src={urLogo}
+          alt=""
+          className="h-12 w-12 md:h-14 md:w-14 rounded-full object-cover shrink-0"
+        />
+        <span
+          className="text-left leading-none italic"
+          style={{ color: UR_BLUE, fontFamily: 'Arial, Helvetica, sans-serif' }}
+        >
+          <span className="block text-[13px] md:text-[14px] font-bold tracking-wide">
+            UNIVERSITY{' '}
+            <span className="text-[10px] md:text-[11px] font-normal tracking-normal">
+              of
+            </span>
+          </span>
+          <span className="block text-[13px] md:text-[14px] font-bold tracking-wide mt-px">
+            RWANDA
+          </span>
+        </span>
+      </span>
+    ),
   },
   {
     name: 'UniPod',
-    logo: unipodLogo,
     href: 'https://unipod.ur.ac.rw',
+    render: () => (
+      <img
+        src={unipodLogo}
+        alt="UniPod"
+        className="h-14 md:h-16 w-auto object-contain"
+      />
+    ),
   },
 ];
 
@@ -43,13 +72,7 @@ const TrustedBy = () => {
               transition={{ duration: 0.45, delay: index * 0.08 }}
               className="opacity-80 hover:opacity-100 transition-opacity"
             >
-              <img
-                src={partner.logo}
-                alt={partner.name}
-                className={`h-14 md:h-16 w-auto object-contain ${
-                  partner.invert ? 'invert dark:invert-0' : ''
-                }`}
-              />
+              {partner.render()}
             </motion.a>
           ))}
         </div>
