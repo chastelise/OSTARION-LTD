@@ -26,7 +26,7 @@ const Contact = () => {
     setSubmitStatus('');
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/robinmerns1@gmail.com', {
+      const response = await fetch('https://formsubmit.co/ajax/info@ostarions.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,8 +64,8 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email',
-      value: 'robinmerns1@gmail.com',
-      link: 'mailto:robinmerns1@gmail.com',
+      value: 'info@ostarions.com',
+      link: 'mailto:info@ostarions.com',
     },
     {
       icon: Phone,
