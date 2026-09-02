@@ -5,6 +5,24 @@ import scholarmarkLogo from '../images/scholarmark-logo.svg';
 import orderlyLogo from '../images/orderly-logo.png';
 import hmsLogo from '../images/hms-logo.svg';
 import hartonEpsLogo from '../images/harton-eps.svg';
+import handshakeIcon from '../images/handshake.png';
+
+const HandshakeMark = () => (
+  <span
+    className="mt-0.5 mr-3 h-5 w-5 shrink-0 bg-primary-600"
+    style={{
+      WebkitMaskImage: `url(${handshakeIcon})`,
+      maskImage: `url(${handshakeIcon})`,
+      WebkitMaskSize: 'contain',
+      maskSize: 'contain',
+      WebkitMaskRepeat: 'no-repeat',
+      maskRepeat: 'no-repeat',
+      WebkitMaskPosition: 'center',
+      maskPosition: 'center',
+    }}
+    aria-hidden="true"
+  />
+);
 
 const ProductDetail = () => {
   const { productId } = useParams();
@@ -271,7 +289,7 @@ const ProductDetail = () => {
                 <div className="space-y-4">
                   {product.businessFeatures.map((feature, idx) => (
                     <div key={idx} className="flex items-start">
-                      <div className="w-2 h-2 rounded-full bg-orange-600 mt-2 mr-4 flex-shrink-0"></div>
+                      <HandshakeMark />
                       <p className="text-gray-700 dark:text-gray-300">{feature}</p>
                     </div>
                   ))}
@@ -292,7 +310,7 @@ const ProductDetail = () => {
                 <div className="space-y-4">
                   {product.businessBenefits.map((benefit, idx) => (
                     <div key={idx} className="flex items-start">
-                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 mr-3 flex-shrink-0" />
+                      <HandshakeMark />
                       <p className="text-gray-700 dark:text-gray-300">{benefit}</p>
                     </div>
                   ))}

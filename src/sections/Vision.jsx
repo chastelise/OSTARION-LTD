@@ -83,23 +83,6 @@ const Vision = () => {
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mt-20 text-center"
-        >
-          <div className="inline-block rounded-2xl p-8 md:p-12 backdrop-blur-sm bg-white/5 border-2 border-transparent">
-            <p className="text-2xl md:text-3xl font-medium mb-4">
-              Join us in building the future of Africa
-            </p>
-            <p className="text-lg text-gray-300">
-              Together, we can create technology that transforms lives and empowers communities.
-            </p>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
