@@ -32,17 +32,15 @@
   }
 }
 
-@keyframes product-marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+.product-scroll-track {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
-.animate-product-marquee {
-  animation: product-marquee 48s linear infinite;
+.product-scroll-track::-webkit-scrollbar {
+  display: none;
 }
 
 .dots-ring-spin {
@@ -108,7 +106,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-product-marquee,
   .dots-ring-spin,
   .dot-pulse {
     animation: none;
