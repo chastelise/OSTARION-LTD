@@ -21,13 +21,13 @@ const Footer = () => {
               © {currentYear} Ostarion. All rights reserved.
             </p>
             <div className="flex space-x-6">
-              <a href="#" className="text-sm text-gray-500 hover:text-primary-500 transition-colors">
+              <a href="#" className="text-sm text-gray-500 hover:text-primary-600 transition-colors">
                 Privacy Policy
               </a>
-              <a href="#" className="text-sm text-gray-500 hover:text-primary-500 transition-colors">
+              <a href="#" className="text-sm text-gray-500 hover:text-primary-600 transition-colors">
                 Terms of Service
               </a>
-              <a href="#" className="text-sm text-gray-500 hover:text-primary-500 transition-colors">
+              <a href="#" className="text-sm text-gray-500 hover:text-primary-600 transition-colors">
                 Cookie Policy
               </a>
             </div>

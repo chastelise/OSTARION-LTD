@@ -129,6 +129,14 @@ const ProductDetail = () => {
         'Speeds up marking and results processing',
         'Improves examination efficiency and scalability',
       ],
+      businessBenefitsTitle: 'Benefits for Institutions',
+      businessBenefits: [
+        'Lower Costs',
+        'Less Paperwork',
+        'Greater Efficiency',
+        'Improved Security',
+        'Scalable Operations',
+      ],
     },
   };
 
@@ -279,7 +287,7 @@ const ProductDetail = () => {
                 className="bg-gradient-to-br from-primary-50 dark:from-gray-800 to-orange-50 dark:to-gray-800 rounded-2xl p-8"
               >
                 <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                  For Businesses & Institutions
+                  {product.businessBenefitsTitle || 'For Businesses & Institutions'}
                 </h2>
                 <div className="space-y-4">
                   {product.businessBenefits.map((benefit, idx) => (

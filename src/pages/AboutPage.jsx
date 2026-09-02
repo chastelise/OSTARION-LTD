@@ -73,7 +73,7 @@ const AboutPage = () => {
             className="text-center mb-16"
           >
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-              About <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">Ostarion</span>
+              About <span className="text-primary-600">Ostarion</span>
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
               A star guiding Africa to its destined oasis of innovation and prosperity
@@ -165,7 +165,7 @@ const AboutPage = () => {
               <p className="text-lg text-gray-700 dark:text-gray-400 mb-4">— Archimedes</p>
               <div className="w-20 h-1 bg-primary-600 mx-auto mb-6"></div>
               <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
-                Our mission is to give ambitious youth the <span className="font-bold text-primary-600 dark:text-primary-500">tools (the lever)</span> and the <span className="font-bold text-primary-600 dark:text-primary-500">support (the fulcrum)</span> they need to move the world.
+                Our mission is to give ambitious youth the <span className="font-bold text-primary-600">tools (the lever)</span> and the <span className="font-bold text-primary-600">support (the fulcrum)</span> they need to move the world.
               </p>
             </div>
           </motion.div>

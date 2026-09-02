@@ -61,7 +61,7 @@ const Hero = () => {
         >
           Empowering the World
           <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">
+          <span className="text-primary-600">
             Through Technology
           </span>
         </motion.h1>
