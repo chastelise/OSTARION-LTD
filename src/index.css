@@ -37,10 +37,35 @@
   overflow-y: hidden;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  cursor: grab;
 }
 
 .product-scroll-track::-webkit-scrollbar {
   display: none;
+}
+
+@keyframes product-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-product-marquee {
+  animation: product-marquee 48s linear infinite;
+}
+
+.product-scroll-track.is-paused .animate-product-marquee {
+  animation-play-state: paused;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .product-scroll-track:hover .animate-product-marquee {
+    animation-play-state: paused;
+  }
 }
 
 .dots-ring-spin {
@@ -106,6 +131,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .animate-product-marquee,
   .dots-ring-spin,
   .dot-pulse {
     animation: none;
