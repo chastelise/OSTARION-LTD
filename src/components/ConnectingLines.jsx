@@ -28,48 +28,49 @@ const allStacked = (boxes) =>
 const connectionsFor = (boxes) => {
   if (boxes.length < 2) return [];
 
-  if (allStacked(boxes)) {
-    return boxes.slice(0, -1).map((_, index) => edgeToEdge(boxes[index], boxes[index + 1]));
-  }
+  let links = [];
 
-  if (
+  if (allStacked(boxes)) {
+    links = boxes.slice(0, -1).map((_, index) => edgeToEdge(boxes[index], boxes[index + 1]));
+  } else if (
     boxes.length === 4 &&
     sameRow(boxes[0], boxes[1]) &&
     sameRow(boxes[2], boxes[3]) &&
     !sameRow(boxes[0], boxes[2])
   ) {
-    return [
+    links = [
       edgeToEdge(boxes[0], boxes[1]),
       edgeToEdge(boxes[1], boxes[3]),
       edgeToEdge(boxes[3], boxes[2]),
       edgeToEdge(boxes[2], boxes[0]),
     ];
-  }
-
-  if (
+  } else if (
     boxes.length === 3 &&
     sameRow(boxes[0], boxes[1]) &&
     !sameRow(boxes[0], boxes[2])
   ) {
-    return [
+    links = [
       edgeToEdge(boxes[0], boxes[1]),
       edgeToEdge(boxes[0], boxes[2]),
       edgeToEdge(boxes[1], boxes[2]),
     ];
+  } else if (boxes.length === 3 && sameRow(boxes[0], boxes[1]) && sameRow(boxes[1], boxes[2])) {
+    links = [edgeToEdge(boxes[0], boxes[1]), edgeToEdge(boxes[1], boxes[2])];
+  } else {
+    links = boxes.slice(0, -1).map((_, index) => edgeToEdge(boxes[index], boxes[index + 1]));
   }
 
-  if (boxes.length === 3 && sameRow(boxes[0], boxes[1]) && sameRow(boxes[1], boxes[2])) {
-    return [edgeToEdge(boxes[0], boxes[1]), edgeToEdge(boxes[1], boxes[2])];
-  }
-
-  return boxes.slice(0, -1).map((_, index) => edgeToEdge(boxes[index], boxes[index + 1]));
+  return links.filter((line) => {
+    const dx = line.x2 - line.x1;
+    const dy = line.y2 - line.y1;
+    return Math.hypot(dx, dy) > 8;
+  });
 };
 
 export const useConnectingLines = () => {
   const wrapRef = useRef(null);
   const cardRefs = useRef([]);
   const [lines, setLines] = useState([]);
-  const [size, setSize] = useState({ width: 0, height: 0 });
 
   useLayoutEffect(() => {
     const wrap = wrapRef.current;
@@ -88,7 +89,6 @@ export const useConnectingLines = () => {
         };
       });
 
-      setSize({ width: wr.width, height: wr.height });
       setLines(connectionsFor(boxes));
     };
 
@@ -112,15 +112,11 @@ export const useConnectingLines = () => {
     };
   }, []);
 
-  return { wrapRef, cardRefs, lines, size };
+  return { wrapRef, cardRefs, lines };
 };
 
-const ConnectingLines = ({ lines, size, theme = 'dark' }) => (
-  <svg
-    className={`absolute inset-0 w-full h-full pointer-events-none overflow-visible z-20 connecting-lines connecting-lines-${theme}`}
-    viewBox={size?.width && size?.height ? `0 0 ${size.width} ${size.height}` : undefined}
-    preserveAspectRatio="none"
-  >
+const ConnectingLines = ({ lines, theme = 'dark' }) => (
+  <svg className={`absolute inset-0 w-full h-full pointer-events-none z-0 connecting-lines connecting-lines-${theme}`}>
     {lines.map((line, index) => (
       <g key={`${line.x1}-${line.y1}-${index}`}>
         <line className="vision-link" x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2} />

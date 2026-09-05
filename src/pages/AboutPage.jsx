@@ -53,7 +53,7 @@ const founders = [
 ];
 
 const AboutPage = () => {
-  const { wrapRef, cardRefs, lines, size } = useConnectingLines();
+  const { wrapRef, cardRefs, lines } = useConnectingLines();
 
   return (
     <div className="pt-28 bg-white dark:bg-gray-900">
@@ -74,7 +74,7 @@ const AboutPage = () => {
           </motion.div>
 
           <div ref={wrapRef} className="relative mb-16">
-            <ConnectingLines lines={lines} size={size} theme="light" />
+            <ConnectingLines lines={lines} theme="light" />
             <div className="relative z-10 grid md:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
               {values.map((value, index) => (
                 <motion.article

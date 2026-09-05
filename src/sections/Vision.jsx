@@ -22,7 +22,7 @@ const visionPoints = [
 ];
 
 const Vision = () => {
-  const { wrapRef, cardRefs, lines, size } = useConnectingLines();
+  const { wrapRef, cardRefs, lines } = useConnectingLines();
 
   return (
     <section id="vision" className="py-24 bg-gray-900 text-white relative overflow-hidden">
@@ -60,7 +60,7 @@ const Vision = () => {
         </motion.div>
 
         <div ref={wrapRef} className="relative">
-          <ConnectingLines lines={lines} size={size} theme="dark" />
+          <ConnectingLines lines={lines} theme="dark" />
 
           <div className="relative z-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
             {visionPoints.map((point, index) => (
@@ -73,7 +73,7 @@ const Vision = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="vision-card h-full rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-8 text-center"
+                className="vision-card h-full rounded-2xl border border-white/15 bg-gray-900 p-8 text-center"
               >
                 <h4 className="text-xl font-bold mb-3">{point.title}</h4>
                 <p className="text-gray-300 leading-relaxed">{point.description}</p>
