@@ -1,66 +1,59 @@
 import { motion } from 'framer-motion';
-import { Star, Target, Heart, Lightbulb, Users, Globe } from 'lucide-react';
+import { Heart, Users, Globe } from 'lucide-react';
 import SectionTitle from '../components/SectionTitle';
 import Card from '../components/Card';
+import ConnectingLines, { useConnectingLines } from '../components/ConnectingLines';
 import ceoPhoto from '../images/founder & ceo.png';
 import cooPhoto from '../images/founder-coo.jpeg';
 
+const values = [
+  {
+    title: 'Our Mission',
+    description: 'Develop software systems that serve communities and empower people through accessible technology.',
+  },
+  {
+    title: 'Our Focus',
+    description: 'We concentrate on three vital sectors: Education, Healthcare, and Hospitality.',
+  },
+  {
+    title: 'Our Philosophy',
+    description: 'We believe Africa must shine again. Technology is the lever that will move the continent forward.',
+  },
+];
+
+const sectors = [
+  {
+    icon: Users,
+    title: 'Education',
+    description: 'Empowering young innovators with platforms for talent development, career guidance, and professional growth through hackathons, mentorship, and global opportunities.',
+  },
+  {
+    icon: Heart,
+    title: 'Healthcare',
+    description: 'Revolutionizing medical training with sophisticated simulation technology that creates safe learning environments for healthcare professionals.',
+  },
+  {
+    icon: Globe,
+    title: 'Hospitality',
+    description: 'Transforming hospitality services through accessible digital platforms that connect businesses with customers seamlessly.',
+  },
+];
+
+const founders = [
+  {
+    name: 'Twese Hozana Chaste',
+    photo: ceoPhoto,
+    imagePosition: 'center 8%',
+  },
+  {
+    name: 'Berwa Derrick',
+    photo: cooPhoto,
+    imagePosition: 'center 8%',
+  },
+];
+
 const AboutPage = () => {
-  const values = [
-    {
-      icon: Star,
-      title: 'Our Name',
-      description: 'Ostarion means "A star to the oasis" - guiding Africa toward prosperity, health, and freedom.',
-    },
-    {
-      icon: Target,
-      title: 'Our Mission',
-      description: 'Develop software systems that serve communities and empower people through accessible technology.',
-    },
-    {
-      icon: Heart,
-      title: 'Our Focus',
-      description: 'We concentrate on three vital sectors: Education, Healthcare, and Hospitality.',
-    },
-    {
-      icon: Lightbulb,
-      title: 'Our Philosophy',
-      description: 'We believe Africa must shine again. Technology is the lever that will move the continent forward.',
-    },
-  ];
-
-  const sectors = [
-    {
-      icon: Users,
-      title: 'Education',
-      description: 'Empowering young innovators with platforms for talent development, career guidance, and professional growth through hackathons, mentorship, and global opportunities.',
-    },
-    {
-      icon: Heart,
-      title: 'Healthcare',
-      description: 'Revolutionizing medical training with sophisticated simulation technology that creates safe learning environments for healthcare professionals.',
-    },
-    {
-      icon: Globe,
-      title: 'Hospitality',
-      description: 'Transforming hospitality services through accessible digital platforms that connect businesses with customers seamlessly.',
-    },
-  ];
-
-  const founders = [
-    {
-      name: 'Twese Hozana Chaste',
-      photo: ceoPhoto,
-      imagePosition: 'center 8%',
-      bio: 'Medical doctor and Mandela Washington Fellowship fellow, with specialized training in AI in health and education.',
-    },
-    {
-      name: 'Berwa Derrick',
-      photo: cooPhoto,
-      imagePosition: 'center 8%',
-      bio: 'Medical doctor and entrepreneur, trained at the Dunin-Deshpande Queen\'s Innovation Centre (DDQIC) at Queen\'s University.',
-    },
-  ];
+  const { wrapRef, cardRefs, lines, size } = useConnectingLines();
 
   return (
     <div className="pt-28 bg-white dark:bg-gray-900">
@@ -80,14 +73,26 @@ const AboutPage = () => {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            {values.map((value, index) => (
-              <Card key={index} delay={index * 0.1} className="p-8">
-                <value.icon className="w-12 h-12 text-primary-600 mb-4" />
-                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">{value.title}</h3>
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{value.description}</p>
-              </Card>
-            ))}
+          <div ref={wrapRef} className="relative mb-16">
+            <ConnectingLines lines={lines} size={size} theme="light" />
+            <div className="relative z-10 grid md:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
+              {values.map((value, index) => (
+                <motion.article
+                  key={value.title}
+                  ref={(el) => {
+                    cardRefs.current[index] = el;
+                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="h-full rounded-2xl bg-white dark:bg-gray-800 shadow-lg p-8 text-center"
+                >
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">{value.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{value.description}</p>
+                </motion.article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -98,34 +103,19 @@ const AboutPage = () => {
             Founders
           </p>
 
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {founders.map((person, index) => (
-              <motion.article
-                key={person.name}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                className="flex items-center gap-5 sm:gap-6 rounded-3xl bg-gray-50 dark:bg-gray-800 p-6 sm:p-7"
-              >
-                <div className="min-w-0 flex-1">
-                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary-600">
-                    Founder
-                  </p>
-                  <h3 className="mt-2 text-xl sm:text-2xl font-semibold tracking-tight whitespace-nowrap text-gray-900 dark:text-white">
-                    {person.name}
-                  </h3>
-                  <p className="mt-4 text-sm sm:text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    {person.bio}
-                  </p>
-                </div>
+              <Card key={person.name} delay={index * 0.08} className="overflow-hidden">
                 <img
                   src={person.photo}
                   alt={person.name}
-                  className="h-28 w-28 sm:h-36 sm:w-36 lg:h-44 lg:w-44 shrink-0 rounded-2xl object-cover"
+                  className="w-full aspect-[4/5] object-cover"
                   style={{ objectPosition: person.imagePosition }}
                 />
-              </motion.article>
+                <h3 className="px-6 py-5 text-center text-xl sm:text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                  {person.name}
+                </h3>
+              </Card>
             ))}
           </div>
         </div>

@@ -75,23 +75,33 @@ const Hero = () => {
           Ostarion builds software systems that transform education, healthcare, and hospitality to make life simpler and more connected.
         </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <Button
-            variant="primary"
-            onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 w-full max-w-sm md:max-w-none mx-auto">
+          <motion.div
+            initial={{ opacity: 0, x: -72 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+            className="w-full md:w-auto"
           >
-            Explore Our Innovations
-            <ArrowRight className="inline-block ml-2 w-5 h-5" />
-          </Button>
-          <Button variant="secondary" onClick={() => navigate('/contact')}>
-            Contact Us
-          </Button>
-        </motion.div>
+            <Button
+              onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Explore More
+              <ArrowRight className="hero-cta-arrow w-5 h-5" />
+            </Button>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 72 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+            className="w-full md:w-auto"
+          >
+            <Button onClick={() => navigate('/contact')}>
+              Contact Us
+            </Button>
+          </motion.div>
+        </div>
       </div>
 
       <motion.div

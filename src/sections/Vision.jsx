@@ -1,30 +1,28 @@
 import { motion } from 'framer-motion';
-import { Globe, Zap, Users, TrendingUp } from 'lucide-react';
 import DotsLinesBackground from '../components/DotsLinesBackground';
+import ConnectingLines, { useConnectingLines } from '../components/ConnectingLines';
+
+const visionPoints = [
+  {
+    title: "Africa's Potential",
+    description: 'We see Africa as a future oasis of prosperity, health, wealth, freedom, and peace.',
+  },
+  {
+    title: 'Technology as Empowerment',
+    description: "Technology is the catalyst that will unlock Africa's limitless potential.",
+  },
+  {
+    title: 'Youth Innovation',
+    description: 'Empowering the next generation of African innovators to lead global change.',
+  },
+  {
+    title: 'Global Impact',
+    description: "Building solutions in Africa that contribute to the world's advancement.",
+  },
+];
 
 const Vision = () => {
-  const visionPoints = [
-    {
-      icon: Globe,
-      title: "Africa's Potential",
-      description: "We see Africa as a future oasis of prosperity, health, wealth, freedom, and peace.",
-    },
-    {
-      icon: Zap,
-      title: "Technology as Empowerment",
-      description: "Technology is the catalyst that will unlock Africa's limitless potential.",
-    },
-    {
-      icon: Users,
-      title: "Youth Innovation",
-      description: "Empowering the next generation of African innovators to lead global change.",
-    },
-    {
-      icon: TrendingUp,
-      title: "Global Impact",
-      description: "Building solutions in Africa that contribute to the world's advancement.",
-    },
-  ];
+  const { wrapRef, cardRefs, lines, size } = useConnectingLines();
 
   return (
     <section id="vision" className="py-24 bg-gray-900 text-white relative overflow-hidden">
@@ -61,27 +59,27 @@ const Vision = () => {
           </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {visionPoints.map((point, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="text-center"
-            >
-              <motion.div
-                whileHover={{ scale: 1.1, rotate: 360 }}
-                transition={{ duration: 0.6 }}
-                className="liquid-glass w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center"
+        <div ref={wrapRef} className="relative">
+          <ConnectingLines lines={lines} size={size} theme="dark" />
+
+          <div className="relative z-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
+            {visionPoints.map((point, index) => (
+              <motion.article
+                key={point.title}
+                ref={(el) => {
+                  cardRefs.current[index] = el;
+                }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="vision-card h-full rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-8 text-center"
               >
-                <point.icon className="w-10 h-10 text-white" />
-              </motion.div>
-              <h4 className="text-xl font-bold mb-3">{point.title}</h4>
-              <p className="text-gray-300 leading-relaxed">{point.description}</p>
-            </motion.div>
-          ))}
+                <h4 className="text-xl font-bold mb-3">{point.title}</h4>
+                <p className="text-gray-300 leading-relaxed">{point.description}</p>
+              </motion.article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

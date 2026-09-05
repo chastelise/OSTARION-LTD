@@ -96,15 +96,143 @@
   background: rgba(17, 24, 39, 0.78);
 }
 
-.liquid-glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.45),
-    inset 0 -8px 16px rgba(255, 255, 255, 0.04),
-    0 8px 24px rgba(0, 0, 0, 0.18);
+.hero-cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-width: 0;
+  min-height: 3.15rem;
+  padding: 0.9rem 1.5rem;
+  border-radius: 9999px;
+  border: 2px solid #0b33a3;
+  background: transparent;
+  color: #0b33a3;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .hero-cta {
+    width: auto;
+    min-width: 11.5rem;
+    padding: 0.95rem 1.85rem;
+    font-size: 1.05rem;
+  }
+}
+
+.dark .hero-cta {
+  border-color: #7ea0e6;
+  color: #d5dcf0;
+}
+
+.hero-cta-label {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.4s ease;
+}
+
+.hero-cta-fill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: #0b33a3;
+  transform: scaleY(0);
+  transform-origin: bottom center;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-cta:hover .hero-cta-fill,
+.hero-cta:active .hero-cta-fill,
+.hero-cta:focus-visible .hero-cta-fill,
+.hero-cta.is-hot .hero-cta-fill {
+  transform: scaleY(1);
+}
+
+.hero-cta:hover,
+.hero-cta:active,
+.hero-cta:focus-visible,
+.hero-cta.is-hot {
+  color: #fff;
+  border-color: #0b33a3;
+}
+
+.hero-cta-arrow {
+  transition: transform 0.35s ease;
+}
+
+.hero-cta:hover .hero-cta-arrow,
+.hero-cta:active .hero-cta-arrow,
+.hero-cta.is-hot .hero-cta-arrow {
+  transform: translateX(4px);
+}
+
+.vision-card {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.vision-link {
+  stroke: rgba(255, 255, 255, 0.22);
+  stroke-width: 1.5;
+}
+
+.vision-link-glow {
+  stroke: #9ec5ff;
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-dasharray: 16 22;
+  filter: drop-shadow(0 0 6px rgba(158, 197, 255, 0.95));
+  animation: vision-link-flow 2.4s linear infinite;
+}
+
+@media (max-width: 767px) {
+  .vision-link {
+    stroke: rgba(255, 255, 255, 0.5);
+    stroke-width: 2;
+  }
+
+  .vision-link-glow {
+    stroke-width: 3;
+    stroke-dasharray: 10 14;
+  }
+
+  .connecting-lines-light .vision-link {
+    stroke: rgba(11, 51, 163, 0.4);
+  }
+}
+
+.vision-link-node {
+  fill: #c9ddff;
+  filter: drop-shadow(0 0 6px rgba(158, 197, 255, 0.9));
+}
+
+.connecting-lines-light .vision-link {
+  stroke: rgba(11, 51, 163, 0.18);
+}
+
+.connecting-lines-light .vision-link-glow {
+  stroke: #0b33a3;
+  filter: drop-shadow(0 0 6px rgba(11, 51, 163, 0.55));
+}
+
+.connecting-lines-light .vision-link-node {
+  fill: #0b33a3;
+  filter: drop-shadow(0 0 6px rgba(11, 51, 163, 0.45));
+}
+
+@keyframes vision-link-flow {
+  to {
+    stroke-dashoffset: -38;
+  }
 }
 
 .dot-pulse {
@@ -133,8 +261,15 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-product-marquee,
   .dots-ring-spin,
-  .dot-pulse {
+  .dot-pulse,
+  .vision-link-glow {
     animation: none;
+  }
+
+  .hero-cta,
+  .hero-cta-fill,
+  .hero-cta-label {
+    transition: none;
   }
 
   .traveling-dot {
